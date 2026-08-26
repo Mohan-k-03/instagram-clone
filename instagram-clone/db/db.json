@@ -1,0 +1,81 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "username": "alex_codes",
+      "fullName": "Alex Developer",
+      "profilePicUrl": "https://i.pravatar.cc/150?u=alex_codes",
+      "bio": "Building the future of web apps 💻✨",
+      "followersCount": 1205,
+      "followingCount": 340,
+      "isVerified": true
+    },
+    {
+      "id": "u2",
+      "username": "sarah.designs",
+      "fullName": "Sarah Smith",
+      "profilePicUrl": "https://i.pravatar.cc/150?u=sarah.designs",
+      "bio": "UI/UX Designer | Coffee addict ☕️",
+      "followersCount": 845,
+      "followingCount": 412,
+      "isVerified": false
+    }
+  ],
+  "posts": [
+    {
+      "id": "p1",
+      "userId": "u1",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+      ],
+      "caption": "Finally finished my new setup! What do you guys think? 🚀",
+      "location": "San Francisco, CA",
+      "likesCount": 342,
+      "commentsCount": 12,
+      "timestamp": "2026-08-26T10:30:00Z",
+      "isLikedByCurrentUser": false
+    },
+    {
+      "id": "p2",
+      "userId": "u2",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1561070791-2526d30994b5",
+        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d"
+      ],
+      "caption": "Weekend vibes with some fresh designs. Swipe left! 👉",
+      "location": "Brooklyn, NY",
+      "likesCount": 890,
+      "commentsCount": 45,
+      "timestamp": "2026-08-25T14:15:00Z",
+      "isLikedByCurrentUser": true
+    }
+  ],
+  "comments": [
+    {
+      "id": "c1",
+      "postId": "p1",
+      "userId": "u2",
+      "text": "Looks amazing! Love the monitor stand.",
+      "likesCount": 5,
+      "timestamp": "2026-08-26T11:05:00Z"
+    },
+    {
+      "id": "c2",
+      "postId": "p2",
+      "userId": "u1",
+      "text": "The color palette on the second slide is perfect 🔥",
+      "likesCount": 12,
+      "timestamp": "2026-08-25T15:20:00Z"
+    }
+  ],
+  "stories": [
+    {
+      "id": "s1",
+      "userId": "u1",
+      "mediaUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
+      "timestamp": "2026-08-26T08:00:00Z",
+      "expiresAt": "2026-08-27T08:00:00Z",
+      "isViewed": false
+    }
+  ]
+}
