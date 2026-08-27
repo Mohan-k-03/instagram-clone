@@ -77,5 +77,19 @@
       "expiresAt": "2026-08-27T08:00:00Z",
       "isViewed": false
     }
+  ],
+  "profile": [
+    {
+      "id": "u1",
+      "username": "alex_codes",
+      "fullName": "Alex Developer",
+      "profilePicUrl": "https://i.pravatar.cc/150?u=alex_codes"
+    },
+    {
+      "id": "u2",
+      "username": "sarah.designs",
+      "fullName": "Sarah Smith",
+      "profilePicUrl": "https://i.pravatar.cc/150?u=sarah.designs"
+    }
   ]
 }

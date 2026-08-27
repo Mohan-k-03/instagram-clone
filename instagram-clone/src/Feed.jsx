@@ -8,7 +8,7 @@ function Feed() {
       <div >
         <Stories/>
       </div>
-      <div className="bg-danger">
+      <div className="">
         <Posts/>
       </div>
     </div>
