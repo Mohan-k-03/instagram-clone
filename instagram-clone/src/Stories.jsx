@@ -13,7 +13,7 @@ function Stories() {
   }, []);
 
   return (
-    <div className="d-flex overflow-auto p-2" style={{ gap: "10px" }}>
+    <div className="d-flex overflow-auto p-2" style={{ gap: "5px" }}>
       {stories.length > 0 ? (
         stories.map((story) => (
           <div key={story.id} className="text-center">
@@ -26,14 +26,15 @@ function Stories() {
                 height: "70px",
                 objectFit: "cover",
                 border: "2px solid #ff1493",
+                
               }}
             />
             <p
-              className="small mt-1"
+              className="small mt-1 text-truncate"
               style={{
                 maxWidth: "80px",
                 overflow: "hidden",
-                textOverflow: "ellipsis",
+                // textOverflow: "ellipsis",
               }}
             >
               {story.username}

@@ -34,11 +34,13 @@ function Posts() {
                     <h5>{user.username}</h5>
                   </div>
                   <img className="image" src={post.mediaUrls[0]} alt="d" />
-                  <i className="bi bi-heart"> </i>
+                <div>
+                    <i className="bi bi-heart"> </i>
                   <i className="bi bi-chat"></i>
                   <i className="bi bi-send"></i>
                   <div className="text-bold">{post.likesCount}Likes </div>
                   <div> {post.caption}</div>
+                  </div>
                 </div>
               );
             })}

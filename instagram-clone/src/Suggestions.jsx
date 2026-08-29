@@ -51,14 +51,14 @@ function Suggestions() {
             >
               <div className="d-flex align-items-center">
                 <img
-                  className="rounded-circle me-2"
+                  className="rounded-circle me-2 "
                   src={user.profilePicUrl}
                   alt={user.username}
                   style={{ width: "40px", height: "40px", objectFit: "cover" }}
                 />
                 <div>
-                  <p className="mb-0 fw-bold">{user.username}</p>
-                  <p className="mb-0 text-muted small">{user.fullName}</p>
+                  <p className="mb-0 fw-bold ">{user.username}</p>
+                  <p className="mb-0 text-muted  small">{user.fullName}</p>
                 </div>
               </div>
               <button
