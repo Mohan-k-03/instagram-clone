@@ -9,8 +9,11 @@ function ViewStory() {
   useEffect(() => {
     if (!id) {
       setError("No story ID provided");
+      setStory(null);
       return;
     }
+
+    let active = true;
 
     fetch(`http://localhost:3000/stories/${id}`)
       .then((res) => {
@@ -18,12 +21,19 @@ function ViewStory() {
         return res.json();
       })
       .then((data) => {
+        if (!active) return;
         setStory(data);
         setError(null);
       })
       .catch((err) => {
+        if (!active) return;
         setError(err.message);
+        setStory(null);
       });
+
+    return () => {
+      active = false;
+    };
   }, [id]);
 
   return (
@@ -34,12 +44,12 @@ function ViewStory() {
         </div>
       )}
       {story ? (
-        <div className="d-flex  align-item-center ">
+        <div className="d-flex align-item-center">
           <img
-            className="  vh-100  "
-            src={story.mediUrls}
-            alt={story.username}
-            style={{}}
+            className="vh-100"
+            src={story.mediaUrls}
+            alt={story.username || "Story"}
+            style={{ maxWidth: "100%", objectFit: "cover" }}
           />
         </div>
       ) : error ? null : (
