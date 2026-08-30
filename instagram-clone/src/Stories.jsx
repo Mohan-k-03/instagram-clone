@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Stories() {
   const [stories, setStories] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -16,7 +18,12 @@ function Stories() {
     <div className="d-flex overflow-auto p-2" style={{ gap: "5px" }}>
       {stories.length > 0 ? (
         stories.map((story) => (
-          <div key={story.id} className="text-center">
+          <div
+            key={story.id}
+            className="text-center"
+            onClick={() => navigate(`/story/${story.id}`)}
+            style={{ cursor: "pointer" }}
+          >
             <img
               src={story.profilePicUrl}
               alt={story.username}
@@ -26,7 +33,6 @@ function Stories() {
                 height: "70px",
                 objectFit: "cover",
                 border: "2px solid #ff1493",
-                
               }}
             />
             <p
@@ -42,7 +48,7 @@ function Stories() {
           </div>
         ))
       ) : (
-        <p>Loading</p>
+        <p>Loadig</p>
       )}
     </div>
   );

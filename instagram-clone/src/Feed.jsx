@@ -1,15 +1,16 @@
 import React from "react";
 import Stories from "./Stories";
 import Posts from "./Posts";
+import ViewStory from "./viewStory";
 
 function Feed() {
   return (
     <div>
-      <div >
-        <Stories/>
+      <div>
+        <Stories />
       </div>
-      <div className="">
-        <Posts/>
+      <div>
+        <Posts />
       </div>
     </div>
   );
