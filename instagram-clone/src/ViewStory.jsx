@@ -44,12 +44,11 @@ function ViewStory() {
         </div>
       )}
       {story ? (
-        <div className="d-flex align-item-center">
+        <div className="d-flex align-item-center justify-content-center  ">
           <img
-            className="vh-100"
             src={story.mediaUrls}
             alt={story.username || "Story"}
-            style={{ maxWidth: "100%", objectFit: "cover" }}
+            style={{  Width: "10px" }}
           />
         </div>
       ) : error ? null : (
