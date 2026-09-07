@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Suggestions() {
   const [users, setUsers] = useState([]);
@@ -6,79 +6,43 @@ function Suggestions() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-      setTimeout(() => {
-      fetch("http://localhost:3000/users")
-        .then((res) => res.json())
-        .then((usersData) => {
-          setUsers(usersData);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoading(false);
-        });
-    }, 1000);
+    fetch("http://localhost:3000/users")
+      .then((response) => response.json())
+      .then((data) => setUsers(data))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
   }, []);
 
   const handleFollow = (userId) => {
-    setFollowedUsers((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(userId)) {
-        newSet.delete(userId);
-      } else {
-        newSet.add(userId);
-      }
-      return newSet;
+    setFollowedUsers((previous) => {
+      const next = new Set(previous);
+      if (next.has(userId)) next.delete(userId);
+      else next.add(userId);
+      return next;
     });
   };
 
   return (
-    <div className="w-75 m-4 p-3">
-      <div className="mb-3">
-        <h5 className="fw-bold">Suggestions For You</h5>
+    <div className="suggestions-panel">
+      <div className="profile-preview">
+        <div className="profile-avatar">Y</div>
+        <div><strong>your_profile</strong><span>Welcome back</span></div>
+        <button className="text-button">Switch</button>
       </div>
-
-      {loading ? (
-        <div className="text-center py-5">
-          <p className="text-muted">Loading suggestions...</p>
+      <div className="suggestions-heading">
+        <strong>Suggested for you</strong><button className="text-button">See all</button>
+      </div>
+      {loading ? <div className="loading-state">Loading suggestions...</div> : users.length > 0 ? users.map((user) => (
+        <div key={user.id} className="suggestion-row">
+          <div className="suggestion-user">
+            <img className="suggestion-avatar" src={user.profilePicUrl} alt={user.username} />
+            <div><strong>{user.username}</strong><span>{user.fullName}</span></div>
+          </div>
+          <button onClick={() => handleFollow(user.id)} className={`follow-button ${followedUsers.has(user.id) ? "following" : ""}`}>
+            {followedUsers.has(user.id) ? "Following" : "Follow"}
+          </button>
         </div>
-      ) : users.length > 0 ? (
-        <div>
-          {users.map((user) => (
-            <div
-              key={user.id}
-              className="d-flex align-items-center justify-content-between p-2 border-bottom"
-            >
-              <div className="d-flex align-items-center">
-                <img
-                  className="rounded-circle me-2 "
-                  src={user.profilePicUrl}
-                  alt={user.username}
-                  style={{ width: "40px", height: "40px", objectFit: "cover" }}
-                />
-                <div>
-                  <p className="mb-0 fw-bold ">{user.username}</p>
-                  <p className="mb-0 text-muted  small">{user.fullName}</p>
-                </div>
-              </div>
-              <button
-                onClick={() => handleFollow(user.id)}
-                className={`btn btn-sm ${
-                  followedUsers.has(user.id)
-                    ? "btn-outline-secondary"
-                    : "btn-primary"
-                }`}
-              >
-                {followedUsers.has(user.id) ? "Following" : "Follow"}
-              </button>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-5">
-          <p className="text-muted">No suggestions available</p>
-        </div>
-      )}
+      )) : <div className="loading-state">No suggestions available</div>}
     </div>
   );
 }

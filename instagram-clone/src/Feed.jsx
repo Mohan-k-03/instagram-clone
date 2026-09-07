@@ -1,15 +1,13 @@
-import React from "react";
 import Stories from "./Stories";
 import Posts from "./Posts";
-import ViewStory from "./viewStory";
 
 function Feed() {
   return (
-    <div>
-      <div>
+    <div className="feed-stack" id="feed">
+      <div className="stories-panel">
         <Stories />
       </div>
-      <div>
+      <div className="posts-stack">
         <Posts />
       </div>
     </div>
