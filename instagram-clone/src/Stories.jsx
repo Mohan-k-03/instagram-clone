@@ -40,7 +40,7 @@ function Stories() {
               style={{
                 maxWidth: "80px",
                 overflow: "hidden",
-                // textOverflow: "ellipsis",
+                textOverflow: "ellipsis",
               }}
             >
               {story.username}
