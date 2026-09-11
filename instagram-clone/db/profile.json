@@ -1,0 +1,15 @@
+[
+  {
+    "id": "u1",
+    "username": "alex_codes",
+    "fullName": "Alex Developer",
+    "profilePicUrl": "https://i.pravatar.cc/150?u=alex_codes",
+    "profilePicUrl2": "https://i.pravatar.cc/150?u=alex_codes"
+  },
+  {
+    "id": "u2",
+    "username": "sarah.designs",
+    "fullName": "Sarah Smith",
+    "profilePicUrl": "https://i.pravatar.cc/150?u=sarah.designs"
+  }
+]

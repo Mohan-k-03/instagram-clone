@@ -1,0 +1,18 @@
+[
+  {
+    "id": "c1",
+    "postId": "p1",
+    "userId": "u2",
+    "text": "Looks amazing! Love the monitor stand.",
+    "likesCount": 5,
+    "timestamp": "2026-08-26T11:05:00Z"
+  },
+  {
+    "id": "c2",
+    "postId": "p2",
+    "userId": "u1",
+    "text": "The color palette on the second slide is perfect 🔥",
+    "likesCount": 12,
+    "timestamp": "2026-08-25T15:20:00Z"
+  }
+]

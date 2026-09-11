@@ -1,0 +1,10 @@
+[
+  {
+    "id": "s1",
+    "userId": "u1",
+    "mediaUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
+    "timestamp": "2026-08-26T08:00:00Z",
+    "expiresAt": "2026-08-27T08:00:00Z",
+    "isViewed": false
+  }
+]

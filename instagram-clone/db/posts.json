@@ -1,0 +1,29 @@
+[
+  {
+    "id": "p1",
+    "userId": "u1",
+    "mediaUrls": [
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+    ],
+    "caption": "Finally finished my new setup! What do you guys think? 🚀",
+    "location": "San Francisco, CA",
+    "likesCount": 342,
+    "commentsCount": 12,
+    "timestamp": "2026-08-26T10:30:00Z",
+    "isLikedByCurrentUser": false
+  },
+  {
+    "id": "p2",
+    "userId": "u2",
+    "mediaUrls": [
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5",
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d"
+    ],
+    "caption": "Weekend vibes with some fresh designs. Swipe left! 👉",
+    "location": "Brooklyn, NY",
+    "likesCount": 890,
+    "commentsCount": 45,
+    "timestamp": "2026-08-25T14:15:00Z",
+    "isLikedByCurrentUser": true
+  }
+]
