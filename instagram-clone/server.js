@@ -1,37 +1,43 @@
-import express from 'express';
-import { MongoClient, ObjectId } from 'mongodb';
-import cors from 'cors';
-import dotenv from 'dotenv';
+import express from "express";
+import { MongoClient, ObjectId } from "mongodb";
+import cors from "cors";
+import dotenv from "dotenv";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/instagram-clone/instagram';
+const MONGODB_URI =
+  process.env.MONGODB_URI ||
+  "mongodb://localhost:27017/instagram-clone/instagram";
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 let db;
-let usersCollection, postsCollection, commentsCollection, storiesCollection, profileCollection;
+let usersCollection,
+  postsCollection,
+  commentsCollection,
+  storiesCollection,
+  profileCollection;
 
 // MongoDB Connection
 const connectDB = async () => {
   try {
     const client = new MongoClient(MONGODB_URI);
     await client.connect();
-    db = client.db('instagram');
-    
-    usersCollection = db.collection('users');
-    postsCollection = db.collection('posts');
-    commentsCollection = db.collection('comments');
-    storiesCollection = db.collection('stories');
-    profileCollection = db.collection('profile');
-    
-    console.log('✅ Connected to MongoDB');
+    db = client.db("instagram");
+
+    usersCollection = db.collection("users");
+    postsCollection = db.collection("posts");
+    commentsCollection = db.collection("comments");
+    storiesCollection = db.collection("stories");
+    profileCollection = db.collection("profile");
+
+    console.log("✅ Connected to MongoDB");
   } catch (error) {
-    console.error('❌ MongoDB connection failed:', error);
+    console.error("❌ MongoDB connection failed:", error);
     process.exit(1);
   }
 };
@@ -39,7 +45,7 @@ const connectDB = async () => {
 // ==================== USERS ENDPOINTS ====================
 
 // GET all users
-app.get('/api/users', async (req, res) => {
+app.get("/api/users", async (req, res) => {
   try {
     const users = await usersCollection.find({}).toArray();
     res.json(users);
@@ -49,10 +55,10 @@ app.get('/api/users', async (req, res) => {
 });
 
 // GET single user by ID
-app.get('/api/users/:id', async (req, res) => {
+app.get("/api/users/:id", async (req, res) => {
   try {
     const user = await usersCollection.findOne({ id: req.params.id });
-    if (!user) return res.status(404).json({ error: 'User not found' });
+    if (!user) return res.status(404).json({ error: "User not found" });
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -62,7 +68,7 @@ app.get('/api/users/:id', async (req, res) => {
 // ==================== POSTS ENDPOINTS ====================
 
 // GET all posts
-app.get('/api/posts', async (req, res) => {
+app.get("/api/posts", async (req, res) => {
   try {
     const posts = await postsCollection.find({}).toArray();
     res.json(posts);
@@ -72,9 +78,11 @@ app.get('/api/posts', async (req, res) => {
 });
 
 // GET posts by user ID
-app.get('/api/posts/user/:userId', async (req, res) => {
+app.get("/api/posts/user/:userId", async (req, res) => {
   try {
-    const posts = await postsCollection.find({ userId: req.params.userId }).toArray();
+    const posts = await postsCollection
+      .find({ userId: req.params.userId })
+      .toArray();
     res.json(posts);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -82,10 +90,10 @@ app.get('/api/posts/user/:userId', async (req, res) => {
 });
 
 // GET single post
-app.get('/api/posts/:id', async (req, res) => {
+app.get("/api/posts/:id", async (req, res) => {
   try {
     const post = await postsCollection.findOne({ id: req.params.id });
-    if (!post) return res.status(404).json({ error: 'Post not found' });
+    if (!post) return res.status(404).json({ error: "Post not found" });
     res.json(post);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -93,14 +101,14 @@ app.get('/api/posts/:id', async (req, res) => {
 });
 
 // CREATE new post
-app.post('/api/posts', async (req, res) => {
+app.post("/api/posts", async (req, res) => {
   try {
     const newPost = {
       id: `p${Date.now()}`,
       ...req.body,
       timestamp: new Date().toISOString(),
       likesCount: 0,
-      commentsCount: 0
+      commentsCount: 0,
     };
     const result = await postsCollection.insertOne(newPost);
     res.status(201).json({ _id: result.insertedId, ...newPost });
@@ -110,19 +118,19 @@ app.post('/api/posts', async (req, res) => {
 });
 
 // UPDATE post likes
-app.patch('/api/posts/:id/like', async (req, res) => {
+app.patch("/api/posts/:id/like", async (req, res) => {
   try {
     const { isLiked } = req.body;
-    const update = isLiked 
+    const update = isLiked
       ? { $inc: { likesCount: 1 } }
       : { $inc: { likesCount: -1 } };
-    
+
     const result = await postsCollection.findOneAndUpdate(
       { id: req.params.id },
       update,
-      { returnDocument: 'after' }
+      { returnDocument: "after" },
     );
-    
+
     res.json(result.value);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -132,7 +140,7 @@ app.patch('/api/posts/:id/like', async (req, res) => {
 // ==================== COMMENTS ENDPOINTS ====================
 
 // GET all comments
-app.get('/api/comments', async (req, res) => {
+app.get("/api/comments", async (req, res) => {
   try {
     const comments = await commentsCollection.find({}).toArray();
     res.json(comments);
@@ -142,9 +150,11 @@ app.get('/api/comments', async (req, res) => {
 });
 
 // GET comments by post ID
-app.get('/api/comments/post/:postId', async (req, res) => {
+app.get("/api/comments/post/:postId", async (req, res) => {
   try {
-    const comments = await commentsCollection.find({ postId: req.params.postId }).toArray();
+    const comments = await commentsCollection
+      .find({ postId: req.params.postId })
+      .toArray();
     res.json(comments);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -152,13 +162,13 @@ app.get('/api/comments/post/:postId', async (req, res) => {
 });
 
 // CREATE new comment
-app.post('/api/comments', async (req, res) => {
+app.post("/api/comments", async (req, res) => {
   try {
     const newComment = {
       id: `c${Date.now()}`,
       ...req.body,
       timestamp: new Date().toISOString(),
-      likesCount: 0
+      likesCount: 0,
     };
     const result = await commentsCollection.insertOne(newComment);
     res.status(201).json({ _id: result.insertedId, ...newComment });
@@ -170,7 +180,7 @@ app.post('/api/comments', async (req, res) => {
 // ==================== STORIES ENDPOINTS ====================
 
 // GET all stories
-app.get('/api/stories', async (req, res) => {
+app.get("/api/stories", async (req, res) => {
   try {
     const stories = await storiesCollection.find({}).toArray();
     res.json(stories);
@@ -180,9 +190,11 @@ app.get('/api/stories', async (req, res) => {
 });
 
 // GET stories by user ID
-app.get('/api/stories/user/:userId', async (req, res) => {
+app.get("/api/stories/user/:userId", async (req, res) => {
   try {
-    const stories = await storiesCollection.find({ id: req.params.userId }).toArray();
+    const stories = await storiesCollection
+      .find({ id: req.params.userId })
+      .toArray();
     res.json(stories);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -192,7 +204,7 @@ app.get('/api/stories/user/:userId', async (req, res) => {
 // ==================== PROFILE ENDPOINTS ====================
 
 // GET all profiles
-app.get('/api/profile', async (req, res) => {
+app.get("/api/profile", async (req, res) => {
   try {
     const profiles = await profileCollection.find({}).toArray();
     res.json(profiles);
@@ -202,10 +214,10 @@ app.get('/api/profile', async (req, res) => {
 });
 
 // GET single profile
-app.get('/api/profile/:id', async (req, res) => {
+app.get("/api/profile/:id", async (req, res) => {
   try {
     const profile = await profileCollection.findOne({ id: req.params.id });
-    if (!profile) return res.status(404).json({ error: 'Profile not found' });
+    if (!profile) return res.status(404).json({ error: "Profile not found" });
     res.json(profile);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -213,12 +225,12 @@ app.get('/api/profile/:id', async (req, res) => {
 });
 
 // UPDATE profile
-app.patch('/api/profile/:id', async (req, res) => {
+app.patch("/api/profile/:id", async (req, res) => {
   try {
     const result = await profileCollection.findOneAndUpdate(
       { id: req.params.id },
       { $set: req.body },
-      { returnDocument: 'after' }
+      { returnDocument: "after" },
     );
     res.json(result.value);
   } catch (error) {
@@ -228,8 +240,8 @@ app.patch('/api/profile/:id', async (req, res) => {
 
 // ==================== HEALTH CHECK ====================
 
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'Backend API is running ✅' });
+app.get("/api/health", (req, res) => {
+  res.json({ status: "Backend API is running ✅" });
 });
 
 // Start Server
