@@ -7,7 +7,7 @@ function Stories() {
 
   useEffect(() => {
     setTimeout(() => {
-      fetch("http://localhost:3000/stories")
+      fetch("http://localhost:5000/api/stories")
         .then((res) => res.json())
         .then((data) => setStories(data))
         .catch((err) => console.log(err));
@@ -48,7 +48,7 @@ function Stories() {
           </div>
         ))
       ) : (
-        <p>Loadig</p>
+        <p>Loading</p>
       )}
     </div>
   );

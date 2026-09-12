@@ -15,7 +15,7 @@ function ViewStory() {
 
     let active = true;
 
-    fetch(`http://localhost:3000/stories/${id}`)
+    fetch(`http://localhost:5000/api/stories/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
@@ -44,11 +44,11 @@ function ViewStory() {
         </div>
       )}
       {story ? (
-        <div className="d-flex align-item-center justify-content-center  ">
+        <div className="d-flex align-items-center justify-content-center">
           <img
             src={story.mediaUrls}
             alt={story.username || "Story"}
-            style={{  Width: "10px" }}
+            style={{ width: "100%", maxWidth: "600px", borderRadius: "8px" }}
           />
         </div>
       ) : error ? null : (

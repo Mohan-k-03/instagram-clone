@@ -8,8 +8,8 @@ function Posts() {
     const loadPosts = async () => {
       try {
         const [postsResponse, usersResponse] = await Promise.all([
-          fetch("http://localhost:3000/posts"),
-          fetch("http://localhost:3000/users"),
+          fetch("http://localhost:5000/api/posts"),
+          fetch("http://localhost:5000/api/users"),
         ]);
         setPosts(await postsResponse.json());
         setUsers(await usersResponse.json());

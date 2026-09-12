@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI =
   process.env.MONGODB_URI ||
-  "mongodb://localhost:27017/instagram-clone/instagram";
+  "mongodb://localhost:27017/instagram";
 
 // Middleware
 app.use(cors());
@@ -196,6 +196,17 @@ app.get("/api/stories/user/:userId", async (req, res) => {
       .find({ id: req.params.userId })
       .toArray();
     res.json(stories);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// GET single story by ID
+app.get("/api/stories/:id", async (req, res) => {
+  try {
+    const story = await storiesCollection.findOne({ id: req.params.id });
+    if (!story) return res.status(404).json({ error: "Story not found" });
+    res.json(story);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
