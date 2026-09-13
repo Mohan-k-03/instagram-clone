@@ -15,7 +15,7 @@ function ViewStory() {
 
     let active = true;
 
-    fetch(`http://localhost:5000/api/stories/${id}`)
+    fetch(`http://localhost:5000/api/story/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
@@ -41,6 +41,8 @@ function ViewStory() {
       {error && (
         <div style={{ color: "red" }}>
           <p>Error: {error}</p>
+
+          
         </div>
       )}
       {story ? (

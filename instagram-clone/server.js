@@ -178,7 +178,8 @@ app.post("/api/comments", async (req, res) => {
 
 // ==================== STORIES ENDPOINTS ====================
 
-// GET all stories
+
+
 app.get("/api/stories", async (req, res) => {
   try {
     const stories = await storiesCollection.find({}).toArray();
@@ -188,7 +189,6 @@ app.get("/api/stories", async (req, res) => {
   }
 });
 
-// GET stories by user ID
 app.get("/api/stories/user/:userId", async (req, res) => {
   try {
     const stories = await storiesCollection
@@ -200,8 +200,17 @@ app.get("/api/stories/user/:userId", async (req, res) => {
   }
 });
 
-// GET single story by ID
 app.get("/api/stories/:id", async (req, res) => {
+  try {
+    const story = await storiesCollection.findOne({ id: req.params.id });
+    if (!story) return res.status(404).json({ error: "Story not found" });
+    res.json(story);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/story/:id", async (req, res) => {
   try {
     const story = await storiesCollection.findOne({ id: req.params.id });
     if (!story) return res.status(404).json({ error: "Story not found" });

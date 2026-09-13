@@ -13,6 +13,8 @@ function Suggestions() {
       .finally(() => setLoading(false));
   }, []);
 
+
+
   const handleFollow = (userId) => {
     setFollowedUsers((previous) => {
       const next = new Set(previous);
@@ -22,6 +24,8 @@ function Suggestions() {
     });
   };
 
+  
+  
   return (
     <div className="suggestions-panel">
       <div className="profile-preview">
