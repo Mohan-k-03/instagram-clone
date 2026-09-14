@@ -34,6 +34,8 @@
     "isVerified": false
   },
   {
+    "mediaUrls": "https://i.pravatar.cc/150?u=alex_codes",
+
     "id": "u4",
     "username": "sarah.designs",
     "fullName": "Sarah Smith",
@@ -48,6 +50,7 @@
     "username": "sarah.designs",
     "fullName": "Sarah Smith",
     "profilePicUrl": "https://i.pravatar.cc/150?u=sarah.designs",
+    "mediaUrls": "https://i.pravatar.cc/150?u=sarah.designs",
     "bio": "UI/UX Designer | Coffee addict ☕️",
     "followersCount": 845,
     "followingCount": 412,
@@ -55,6 +58,8 @@
   },
   {
     "id": "u6",
+    "mediaUrls": "https://i.pravatar.cc/150?u=sarah.designs",
+
     "username": "sarah.designs",
     "fullName": "Sarah Smith",
     "profilePicUrl": "https://i.pravatar.cc/150?u=sarah.designs",
@@ -65,6 +70,8 @@
   },
   {
     "id": "u7",
+    "mediaUrls": "https://i.pravatar.cc/150?u=sarah.designs",
+
     "username": "sarah.designs",
     "fullName": "Sarah Smith",
     "profilePicUrl": "https://i.pravatar.cc/150?u=sarah.designs",
@@ -75,6 +82,8 @@
   },
   {
     "id": "u8",
+    "mediaUrls": "https://i.pravatar.cc/150?u=sarah.designs",
+
     "username": "sarah.designs",
     "fullName": "Sarah Smith",
     "profilePicUrl": "https://i.pravatar.cc/150?u=sarah.designs",
