@@ -39,6 +39,9 @@ function Suggestions() {
       <div className="suggestions-heading">
         <strong>Suggested for you</strong>
         <button className="text-button">See all</button>
+  
+  
+  
       </div>
       {loading ? (
         <div className="loading-state">Loading suggestions...</div>

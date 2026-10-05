@@ -25,6 +25,10 @@ function Stories() {
             style={{ cursor: "pointer" }}
           >
             <img
+
+
+
+
               src={story.profilePicUrl}
               alt={story.username}
               className="rounded-circle"
