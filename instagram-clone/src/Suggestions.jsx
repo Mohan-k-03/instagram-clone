@@ -13,8 +13,6 @@ function Suggestions() {
       .finally(() => setLoading(false));
   }, []);
 
-
-
   const handleFollow = (userId) => {
     setFollowedUsers((previous) => {
       const next = new Set(previous);
@@ -24,8 +22,6 @@ function Suggestions() {
     });
   };
 
-  
-  
   return (
     <div className="suggestions-panel">
       <div className="profile-preview">
@@ -39,9 +35,6 @@ function Suggestions() {
       <div className="suggestions-heading">
         <strong>Suggested for you</strong>
         <button className="text-button">See all</button>
-  
-  
-  
       </div>
       {loading ? (
         <div className="loading-state">Loading suggestions...</div>

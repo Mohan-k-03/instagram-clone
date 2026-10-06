@@ -38,6 +38,10 @@ function Sidebar() {
           <i className="bi bi-list" />
           More
         </a>
+
+
+
+        
       </div>
     </div>
   );

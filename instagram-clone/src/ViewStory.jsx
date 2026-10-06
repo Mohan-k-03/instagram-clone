@@ -31,6 +31,12 @@ function ViewStory() {
         setStory(null);
       });
 
+
+
+
+
+
+      
     return () => {
       active = false;
     };
@@ -41,8 +47,6 @@ function ViewStory() {
       {error && (
         <div style={{ color: "red" }}>
           <p>Error: {error}</p>
-
-          
         </div>
       )}
       {story ? (
